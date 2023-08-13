@@ -32,6 +32,9 @@ export class SubProduct {
   @Column({ type: "decimal", nullable: true })
   price: number
 
+  @Column({ type: "varchar", nullable: true })
+  image: string
+
   @ManyToOne(() => Product, (product) => product.subProducts)
   product: Product
 
