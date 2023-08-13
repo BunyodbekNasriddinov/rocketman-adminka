@@ -23,13 +23,13 @@ export class SubProduct {
   })
   sub_product_name: string
 
-  @Column({ type: "varchar", length: 128, nullable: true })
+  @Column({ type: "varchar", nullable: true })
   description: string
 
   @Column({ type: "boolean", nullable: true, default: false })
   status: boolean
 
-  @Column({ type: "decimal", length: 16, nullable: true })
+  @Column({ type: "decimal", nullable: true })
   price: number
 
   @ManyToOne(() => Product, (product) => product.subProducts)

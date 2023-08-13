@@ -31,7 +31,7 @@ export class Admin {
   })
   password: string
 
-  @Column({ type: "enum", nullable: true })
+  @Column({ type: "enum", nullable: true, enum: Role })
   role: Role
 
   @CreateDateColumn()

@@ -6,10 +6,10 @@ const NODE_ENV = process.env.NODE_ENV
 export default {
   PG: {
     type: "postgres",
-    host: NODE_ENV == "dev" ? "localhost" : process.env.DB_HOST,
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
+    host: NODE_ENV === "dev" ? "localhost" : process.env.PG_HOST,
+    username: process.env.PG_USERNAME,
+    password: process.env.PG_PASSWORD,
+    database: process.env.PG_DATABASE,
   },
   PAGINATION: {
     page: 1,
