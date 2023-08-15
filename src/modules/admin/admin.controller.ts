@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import Admin from "./Admin";
 import { AuthorizationError, InternalServerError, NotFoundError } from "../../utils/errors";
+import jwt from "../../utils/jwt";
 
 
 const LOGIN = async (req: Request, res: Response, next: NextFunction) => {
@@ -10,10 +11,12 @@ const LOGIN = async (req: Request, res: Response, next: NextFunction) => {
         if (!findAdmin) {
             return res.send(new NotFoundError("Admin Not Found"))
         }
+        delete findAdmin.password
         res.status(201).json({
             status: 201,
             message: "success logined",
-            data: findAdmin
+            access_token: jwt.sign({id: findAdmin.id}),
+            data: findAdmin,
 
         })
     } catch (error) {
@@ -36,7 +39,7 @@ const CREATE_ADMIN = async (req: Request, res: Response, next: NextFunction) => 
         res.status(201).json({ status: 201, message: "created admin", data: admin_create })
     } catch (error) {
         console.log(error.message);
-        
+
         return res.send(new InternalServerError("InternalServerError"))
     }
 }
