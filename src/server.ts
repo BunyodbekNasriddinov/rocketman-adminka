@@ -21,6 +21,9 @@ mongoose
     .then((d) => console.log("db connection"))
     .catch((e:any) => console.log("db error", e.message));
 
+
+
+
 const server = createServer(app)
 
 
