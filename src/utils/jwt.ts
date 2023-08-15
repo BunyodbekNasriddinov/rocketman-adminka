@@ -1,5 +1,4 @@
 import { sign, verify } from "jsonwebtoken"
-import dotenv from "dotenv"
 
 
 const JWT_SECRET = "olma"

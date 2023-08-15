@@ -1,3 +1,4 @@
+import { BadRequestError } from '../utils/errors';
 import jwt from '../utils/jwt';
 import { Request , Response , NextFunction } from 'express';
 
@@ -5,12 +6,12 @@ import { Request , Response , NextFunction } from 'express';
 export default (req:Request , res:Response, next:NextFunction) => {
   try {
     const { access_token } = req.headers
-    if(!access_token){
-      throw new Error('token required')
+    if(!access_token){ 
+      return res.send(new BadRequestError('token required'))
     }
-    const { _Id } = jwt.verify(access_token)
+    const { _id }:any = jwt.verify(access_token)
     next()
-  } catch (error) {
-    return next(error)
+  } catch (error:any) {
+    return next(error.message)
   }
 }
