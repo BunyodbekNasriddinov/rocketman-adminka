@@ -1,5 +1,5 @@
-import express, { Application } from "express"
-import {createServer} from "http"
+import express, { Application , Request , Response , NextFunction } from "express"
+import { createServer } from "http"
 import mongoose from "mongoose";
 import routers from "./modules/index"
 import cors from "cors"
@@ -8,7 +8,7 @@ import errorHandler from "./middlewares/errorHandler";
 
 dotenv.config()
 
-const app:Application = express()
+const app: Application = express()
 
 app.use(express.json())
 app.use(cors())
@@ -19,13 +19,17 @@ app.use(routers)
 mongoose
     .connect('mongodb://127.0.0.1/rocketman_backend')
     .then((d) => console.log("db connection"))
-    .catch((e:any) => console.log("db error", e.message));
+    .catch((e: any) => console.log("db error", e.message));
 
 
 
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+    res.status(400).json({ status: 400, message: err.message })
+})
 
 const server = createServer(app)
 
 
-server.listen(4000 , () => console.log("server running port 4000"))
+
+server.listen(4000, () => console.log("server running port 4000"))
 
