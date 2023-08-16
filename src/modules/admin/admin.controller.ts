@@ -72,9 +72,27 @@ const DELETE = async (req: Request, res: Response, next: NextFunction) => {
 }
 
 
+const GET_ADMIN = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { access_token } = req.headers
+        const { id }: any = jwt.verify(access_token)
+        const findbyid = await Admin.findById(id)
+        if (!findbyid) {
+            return res.send(new NotFoundError("Admin Not Found"))
+        }
+        res.status(200).json({ status: 200, message: "ok", data: findbyid })
+
+    } catch (error) {
+        console.log(error.message);
+
+    }
+}
+
+
 export default {
     LOGIN,
     CREATE_ADMIN,
     UPDATE_ADMIN,
-    DELETE
+    DELETE,
+    GET_ADMIN
 }
