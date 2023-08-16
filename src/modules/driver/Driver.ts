@@ -10,7 +10,7 @@ interface DriverI {
 
 
 
-const RestaurantSchema = new Schema<DriverI>({
+const DriverSchema = new Schema<DriverI>({
     driver_full_name: {
         type: String,
         minlength: 5,
@@ -36,4 +36,4 @@ const RestaurantSchema = new Schema<DriverI>({
     })
 
 
-export default model('Restaurant', RestaurantSchema)
+export default model('Driver', DriverSchema)

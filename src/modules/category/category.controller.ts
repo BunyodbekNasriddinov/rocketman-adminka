@@ -1,10 +1,12 @@
 import { Request, Response, NextFunction } from "express"
 import Category from "./Category";
 import { BadRequestError } from "../../utils/errors";
+import SubCategory from "../subCategory/SubCategory";
 
 
 const GET = async (req: Request, res: Response, next: NextFunction) => {
     try {
+    
         const categories = await Category.find()
         res.status(200).send({ status: 200, message: "ok", data: categories })
     } catch (error) {

@@ -1,7 +1,6 @@
 import { Router } from "express"
 import adminController from "./admin.controller"
 import validate from "../../middlewares/validate"
-import check_token from "../../middlewares/check_token"
 import super_admin_check_token from "../../middlewares/super_admin_check_token"
 
 const router: Router = Router()
