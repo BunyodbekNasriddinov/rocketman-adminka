@@ -5,7 +5,10 @@ interface SubCategoryI {
     sub_category_name: string,
     count: number
     location: string
+    long: string
+    lang: string
     category: Types.ObjectId
+    status: boolean
     created_at: string
 }
 
@@ -24,6 +27,18 @@ const SubCategorySchema = new Schema<SubCategoryI>({
     },
     location: {
         type: String,
+        required: true
+    },
+    long: {
+        type: String,
+        required: true
+    },
+    lang: {
+        type: String,
+        required: true
+    },
+    status: {
+        type: Boolean,
         required: true
     },
     category: [
